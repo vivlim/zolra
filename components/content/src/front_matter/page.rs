@@ -46,6 +46,8 @@ pub struct PageFrontMatter {
     /// otherwise is set after parsing front matter and sections
     /// Can't be an empty string if present
     pub path: Option<String>,
+    /// Top-level tags. If any tags are specified here, they will be interpreted as 'tags' taxonomy.
+    pub tags: Option<Vec<String>>,
     pub taxonomies: HashMap<String, Vec<String>>,
     /// Integer to use to order content. Highest is at the bottom, lowest first
     pub weight: Option<usize>,
@@ -85,6 +87,19 @@ fn parse_datetime(d: &str) -> Option<OffsetDateTime> {
 impl PageFrontMatter {
     pub fn parse(raw: &RawFrontMatter) -> Result<PageFrontMatter> {
         let mut f: PageFrontMatter = raw.deserialize()?;
+
+        if let Some(mut top_level_tags) = f.tags.take() {
+            // Top level tags are defined.
+            // Move them into taxonomies.
+            match f.taxonomies.get_mut("tags") {
+                Some(tags) => {
+                    tags.append(&mut top_level_tags);
+                },
+                None => {
+                    f.taxonomies.insert("tags".to_string(), top_level_tags);
+                }
+            }
+        }
 
         if let Some(ref slug) = f.slug {
             if slug.is_empty() {
@@ -159,6 +174,7 @@ impl Default for PageFrontMatter {
             aliases: Vec::new(),
             template: None,
             extra: Map::new(),
+            tags: None,
         }
     }
 }
@@ -477,6 +493,29 @@ taxonomies:
     categories:
         - Dev
 "#); "yaml")]
+    #[test_case(&RawFrontMatter::Yaml(r#"
+title: Hello World
+
+tags:
+    - Rust
+    - JavaScript
+
+taxonomies:
+    categories:
+        - Dev
+"#); "yaml top level tags")]
+    #[test_case(&RawFrontMatter::Yaml(r#"
+title: Hello World
+
+tags:
+    - JavaScript
+
+taxonomies:
+    tags:
+        - Rust
+    categories:
+        - Dev
+"#); "yaml top level tags combination")]
     fn can_parse_taxonomies(content: &RawFrontMatter) {
         let res = PageFrontMatter::parse(content);
         println!("{:?}", res);
