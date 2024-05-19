@@ -1,0 +1,5 @@
+name: 'Build site with zolra (modified zola)'
+description: 'Generates a static site located in GITHUB_WORKSPACE'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

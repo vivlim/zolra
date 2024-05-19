@@ -11,5 +11,6 @@ RUN cargo build --release --target x86_64-unknown-linux-gnu
 
 
 FROM gcr.io/distroless/cc-debian12
-COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/zola /bin/zola
-ENTRYPOINT [ "/bin/zola" ]
+COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/zolra /bin/zolra
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
