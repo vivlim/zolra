@@ -1,6 +1,9 @@
-FROM busybox:1.35.0-uclibc
+FROM gcr.io/distroless/cc-debian12
 
 COPY --from=ghcr.io/vivlim/zolra:main /bin/zolra /bin/zolra
+COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
+COPY --from=busybox:1.35.0-uclibc /bin/mkdir /bin/mkdir
+COPY --from=busybox:1.35.0-uclibc /bin/ls /bin/ls
 
 COPY entrypoint.sh /entrypoint.sh
 
