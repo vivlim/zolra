@@ -11,12 +11,6 @@ RUN cargo build --release --target x86_64-unknown-linux-gnu
 
 FROM gcr.io/distroless/cc-debian12
 
-COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
-COPY --from=busybox:1.35.0-uclibc /bin/mkdir /bin/mkdir
-
 COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/zolra /bin/zolra
-COPY entrypoint.sh /entrypoint.sh
 
-RUN /bin/mkdir -p /github/workspace
-
-ENTRYPOINT [ "/bin/sh", "/entrypoint.sh" ]
+ENTRYPOINT [ "/bin/zolra" ]

@@ -1,1 +1,10 @@
 FROM ghcr.io/vivlim/zolra:main
+
+COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
+COPY --from=busybox:1.35.0-uclibc /bin/mkdir /bin/mkdir
+
+COPY entrypoint.sh /entrypoint.sh
+
+RUN /bin/mkdir -p /github/workspace
+
+ENTRYPOINT [ "/bin/sh", "/entrypoint.sh" ]
