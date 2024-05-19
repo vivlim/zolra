@@ -1,7 +1,6 @@
-FROM ghcr.io/vivlim/zolra:main
+FROM busybox:1.35.0-uclibc
 
-COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
-COPY --from=busybox:1.35.0-uclibc /bin/mkdir /bin/mkdir
+COPY --from=ghcr.io/vivlim/zolra:main /bin/zolra /bin/zolra
 
 COPY entrypoint.sh /entrypoint.sh
 
