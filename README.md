@@ -1,9 +1,13 @@
-# zola (né Gutenberg)
+# zolra (né zola (né Gutenberg))
 
-[![Build Status](https://dev.azure.com/getzola/zola/_apis/build/status/getzola.zola?branchName=master)](https://dev.azure.com/getzola/zola/_build/latest?definitionId=1&branchName=master)
-![GitHub all releases](https://img.shields.io/github/downloads/getzola/zola/total)
+Viv's personal modifications to zola, a fast static site generator in a single binary with everything built-in.
 
-A fast static site generator in a single binary with everything built-in.
+# Modifications
+
+- Allow tags to be specified at the root level in front matter, for compatibility with Obsidian
+- Maybe more? not yet!
+
+# Docs
 
 Documentation is available on [its site](https://www.getzola.org/documentation/getting-started/installation/) or
 in the `docs/content` folder of the repository and the community can use [its forum](https://zola.discourse.group).

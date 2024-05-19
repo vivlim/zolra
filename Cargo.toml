@@ -1,11 +1,11 @@
 [package]
-name = "zola"
+name = "zolra"
 version = "0.18.0"
 authors = ["Vincent Prouillet <hello@vincentprouillet.com>"]
 edition = "2021"
 license = "MIT"
 readme = "README.md"
-description = "A fast static site generator with everything built-in"
+description = "A fast static site generator with everything built-in, with some personal modifications"
 homepage = "https://www.getzola.org"
 repository = "https://github.com/getzola/zola"
 keywords = ["static", "site", "generator", "blog"]
@@ -17,7 +17,7 @@ winres = "0.1"
 time = "0.3"
 
 [[bin]]
-name = "zola"
+name = "zolra"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
@@ -68,5 +68,5 @@ strip = true
 debug = 0
 
 [package.metadata.winres]
-OriginalFilename = "zola.exe"
-InternalName = "zola"
+OriginalFilename = "zolra.exe"
+InternalName = "zolra"

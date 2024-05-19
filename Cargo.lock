@@ -4500,7 +4500,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "zola"
+name = "zolra"
 version = "0.18.0"
 dependencies = [
  "clap 4.4.11",
