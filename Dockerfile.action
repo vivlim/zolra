@@ -6,6 +6,7 @@ COPY --from=busybox:1.35.0-uclibc /bin/mkdir /bin/mkdir
 COPY --from=busybox:1.35.0-uclibc /bin/ls /bin/ls
 COPY --from=busybox:1.35.0-uclibc /bin/chown /bin/chown
 COPY --from=busybox:1.35.0-uclibc /bin/chmod /bin/chmod
+COPY --from=busybox:1.35.0-uclibc /bin/stat /bin/stat
 
 COPY entrypoint.sh /entrypoint.sh
 
