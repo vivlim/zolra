@@ -5,7 +5,10 @@ Viv's personal modifications to zola, a fast static site generator in a single b
 # Modifications
 
 - Allow tags to be specified at the root level in front matter, for compatibility with Obsidian
+- WIP changes from [InDieTasten's zola-codespaces repo for codespaces / dev container support in `zola serve`](https://github.com/InDieTasten/zola-codespaces/tree/zola-codespaces)
 - Maybe more? not yet!
+
+*(below this line is the original readme.)*
 
 # Docs
 
