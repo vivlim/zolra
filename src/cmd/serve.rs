@@ -345,10 +345,17 @@ fn create_new_site(
             format!("{}:{}", base_url, interface_port)
         };
 
+        let base_url_with_protocol =
+            if base_address.starts_with("http://") || base_address.starts_with("https://") {
+                base_address
+            } else {
+                format!("http://{}", base_address)
+            };
+
         if site.config.base_url.ends_with('/') {
-            format!("http://{}/", base_address)
+            format!("{}/", base_url_with_protocol)
         } else {
-            format!("http://{}", base_address)
+            base_url_with_protocol
         }
     };
 
