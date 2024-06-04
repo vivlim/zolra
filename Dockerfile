@@ -11,9 +11,10 @@ WORKDIR /app
 COPY . .
 
 RUN cargo build --release --target "$(case "$TARGETARCH" in amd64) echo x86_64 ;; arm64) echo aarch64 ;; esac)-unknown-linux-gnu"
+RUN mv "/app/target/$(case "$TARGETARCH" in amd64) echo x86_64 ;; arm64) echo aarch64 ;; esac)-unknown-linux-gnu/release/zolra" /app/target
 
 FROM gcr.io/distroless/cc-debian12
 
-COPY --from=builder /app/target/$(case "$TARGETARCH" in amd64) echo x86_64 ;; arm64) echo aarch64 ;; esac)-unknown-linux-gnu/release/zolra /bin/zolra
+COPY --from=builder /app/target/zolra /bin/zolra
 
 ENTRYPOINT [ "/bin/zolra" ]
